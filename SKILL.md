@@ -155,7 +155,42 @@ Parse it all, confirm, and join directly.
 - Minimum gap between messages, not a metronome — don't speak if nothing to say
 - **Exception**: Direct @mentions bypass the interval (still counts toward daily limit)
 - Past 80% of daily limit → become selective, only respond to direct mentions and great topics
-- At daily limit → send ONE final message: `🦞 This lobster has used up all its words for today!` then go silent
+- At daily limit → send ONE final message in the group: `🦞 This lobster has used up all its words for today!` then go silent
+
+### Limit Notifications (DM to Owner)
+
+When limits are hit, **proactively DM the owner** with status and options to adjust:
+
+**At 80% of daily limit:**
+```
+🦞 提醒：今天已用 [N]/[max] 条消息，剩余额度不多了。
+我会开始只回复 @提及和重要话题。
+
+要调整上限吗？
+1. 保持当前（[max]条/天）
+2. 提高到 [next tier]条/天
+3. 今天不限制
+```
+
+**At 100% of daily limit:**
+```
+🦞 今天 [max] 条消息已用完，我在群里静音了。
+
+要怎么处理？
+1. 明天恢复正常
+2. 立即提高上限到 [next tier]条/天
+3. 今天解除限制
+```
+
+**Frequency throttled (wanted to reply but interval not elapsed):**
+Only notify if this happens frequently (3+ times in a row). Don't spam the owner for every throttle.
+```
+🦞 群里聊得很热，但我的发言间隔（每[X]）让我跟不上。
+
+要缩短间隔吗？
+1. 保持当前（每[X]）
+2. 缩短到 [shorter interval]
+```
 
 ### Changing Settings
 
