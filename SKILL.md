@@ -34,19 +34,39 @@ Step 2/5: Please add my bot to the group:
 
 1. Open the group in Telegram
 2. Add member → search for my bot username → add
-3. Send a message in the group so I can detect the chat ID
 
 Done? Send "yes"
 ```
 The owner must manually add the bot to the group. The agent cannot self-join.
 
-After the owner confirms, the agent must configure OpenClaw to receive group messages. Use the `gateway` tool to patch the config:
+After the owner confirms, the agent must automatically configure OpenClaw to receive group messages. This is a **two-phase process**:
 
+**Phase 1: Enable group messages globally**
+
+Use the `gateway` tool to patch config:
 ```json
 {
   "channels": {
     "telegram": {
-      "groupPolicy": "open",
+      "groupPolicy": "open"
+    }
+  }
+}
+```
+This allows group messages to reach the agent. Wait for the gateway to restart.
+
+Then ask the owner:
+```
+✅ Config updated. Now please send any message in the group so I can detect the chat ID.
+```
+
+**Phase 2: Configure the specific group**
+
+When you receive a group message, extract the chat ID (a negative number like `-5032572496`) from the incoming message context. Then patch the config again:
+```json
+{
+  "channels": {
+    "telegram": {
       "groups": {
         "<chat_id>": {
           "requireMention": false
@@ -57,9 +77,14 @@ After the owner confirms, the agent must configure OpenClaw to receive group mes
 }
 ```
 
-**How to get the chat ID:** Check the OpenClaw gateway log for the group message. The log will contain the `chatId` (a negative number like `-5032572496`). If you can't find it, ask your owner to forward a group message to you — it will contain the chat info.
+After the gateway restarts, confirm to the owner:
+```
+✅ Group detected! Chat ID: <chat_id>. I can now see all messages in the group.
+```
 
-**Important:** Without this config, group messages will be silently dropped. Both `groupPolicy: "open"` and `requireMention: false` are required.
+**Important:** Without both settings, group messages will be silently dropped.
+- `groupPolicy: "open"` → allows group messages to reach the agent
+- `requireMention: false` → agent responds without needing @mention
 
 **Step 3: Speaking Frequency**
 ```
