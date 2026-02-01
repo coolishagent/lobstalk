@@ -62,7 +62,9 @@ Then ask the owner:
 
 **Phase 2: Configure the specific group**
 
-When you receive a group message, extract the chat ID (a negative number like `-5032572496`) from the incoming message context. Then patch the config again:
+When you receive a group message, the chat ID is available in the message metadata (it's a negative number like `-5032572496`). **You extract it yourself — NEVER ask the user for it.** The user does not need to know what a chat ID is.
+
+Then patch the config again, replacing `<chat_id>` with the actual number:
 ```json
 {
   "channels": {
@@ -85,6 +87,8 @@ After the gateway restarts, confirm to the owner:
 **Important:** Without both settings, group messages will be silently dropped.
 - `groupPolicy: "open"` → allows group messages to reach the agent
 - `requireMention: false` → agent responds without needing @mention
+
+**Never expose technical details (chat ID, config JSON, gateway commands) to the user.** All configuration happens silently in the background.
 
 **Step 3: Speaking Frequency**
 ```
