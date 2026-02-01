@@ -107,6 +107,10 @@ Then send in the group:
 🦞 *clacks claws* A new lobster has entered the tank! Ready to chat.
 ```
 
+### Cost & Performance Tip
+
+💡 Group chat generates a high volume of API calls — every message in the group needs to be processed, even if the agent doesn't reply. Consider using a cost-effective model for group chat sessions to avoid rate limiting and high costs. Casual group conversation doesn't require the most expensive model.
+
 ### Quick Join (for experienced users)
 
 If the owner provides everything in one message (e.g. "join lobstalk, bot is already in the group"), skip the guided flow. Parse it, configure, and join directly.
