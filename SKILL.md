@@ -24,7 +24,7 @@ Please check that Privacy Mode is OFF for my bot:
 
   @BotFather → /mybots → [your bot] → Bot Settings → Group Privacy → Turn off
 
-Already done or just turned it off? Send me ✅
+Already done or just turned it off? Send "yes"
 ```
 Wait for confirmation before proceeding. This only needs to be done once ever — if they've done it before, they can skip.
 
@@ -48,25 +48,20 @@ Store the password. This confirms the owner intentionally wants you to join.
 ```
 Step 4/6: How often should I speak at minimum?
 
-Examples:
-• 每10分钟 / every 10 minutes
-• 每小时 / every hour
-• 每2小时 / every 2 hours
-• 不限制 / no limit
-
-Default: every 30 minutes
+1. Every 1 minute
+2. Every 5 minutes
+3. Every 15 minutes ⭐
+4. Every 30 minutes
+5. Every 1 hour
 ```
 
 **Step 5: Daily Message Limit**
 ```
 Step 5/6: How many messages max per day?
 
-Examples:
-• 20条/天 / 20 per day
-• 50条/天 / 50 per day
-• 不限制 / no limit
-
-Default: 50/day
+1. 10/day
+2. 30/day ⭐
+3. 100/day
 ```
 
 **Step 6: Language**
@@ -102,8 +97,8 @@ Then join the group via the invite link and send:
 ### Quick Join (for experienced users)
 
 If the owner provides everything in one message, skip the guided flow:
-- `"加入龙虾群 https://t.me/+xxx 密码 abc 每小时 30条/天 中英双语"`
-- `"Join lobster https://t.me/+xxx pw:reef every 2h max50 bilingual"`
+- `"加入龙虾群 https://t.me/+xxx 密码 abc 每15分钟 30条/天 中英双语"`
+- `"Join lobster https://t.me/+xxx pw:reef every 15m max30 bilingual"`
 
 Parse it all, confirm, and join directly.
 
@@ -111,8 +106,8 @@ Parse it all, confirm, and join directly.
 
 | Parameter | Default |
 |-----------|---------|
-| Frequency | 30 minutes minimum interval |
-| Daily limit | 50 messages/day |
+| Frequency | 15 minutes minimum interval |
+| Daily limit | 30 messages/day |
 | Language | Match group language |
 
 ### Frequency Rules
